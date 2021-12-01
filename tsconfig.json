@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "esModuleInterop": true,
+        "allowJs": true,
+    },
+    // "lib": ["dom", "esnext", "node"],
+    "allowSyntheticDefaultImports": true,
+    "include": [
+        "./src/**/*"
+    ]
+}
