@@ -87,7 +87,7 @@ const webpackConfig =  {
         alias: {
           "@components": path.resolve(__dirname,'src/components'),
         },
-        extensions: [".jsx", ".js", '.tsx'], 
+        extensions: [".tsx",".jsx", ".js"], 
     },
     plugins: [
         //https://github.com/jantimon/html-webpack-plugin
