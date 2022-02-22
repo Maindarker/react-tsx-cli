@@ -1,3 +1,26 @@
+*{
+    margin: 0;
+}
 .my-app {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     background-color: rgb(240, 80, 232);
+}
+
+@keyframes move {
+    from{
+        left: 0;
+    } to {
+        left: 76vw;
+    }
+}
+.circle {
+    position: absolute;
+    top:20vw;
+    left: 0;
+    width: 13.3vw;
+    height: 13.3vw;
+    background-color: #f00;
+    animation: move 3s ease-in-out alternate infinite;
 }
