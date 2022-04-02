@@ -7,6 +7,6 @@ const container = document.querySelector('#app');
 // console.log(root);
 // root.render(<App />);
 
-const reactObj = ReactDOM.render(<App/>, container, (e) => {
-    console.log('root render')
+ReactDOM.render(<App/>, container, () => {
+    // console.log(<App/>);
 });

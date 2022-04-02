@@ -5,29 +5,27 @@ export default class ErrorBoundary extends Component {
       super(props);
       this.state = { error: null, errorInfo: null };
     }
-
-    // UNSAFE_componentWillMount(){
-    //   console.log('ErrorBoundary willmount');
-    // }
-
-    static getDerivedStateFromProps(props, state){
-      console.log(props, state);
-      return { error: null, errorInfo: null }
-    }
     
     componentDidCatch(error, errorInfo) {
-      // console.log(error,'=====>',errorInfo)
+      // 你同样可以将错误日志上报给服务器
+      console.log(error,'=====>',errorInfo)
       // Catch errors in any components below and re-render with error message
-      this.setState({
-        error: error,
-        errorInfo: errorInfo
-      })
+      
       // You can also log error messages to an error reporting service here
     }
+
+    static getDerivedStateFromError(error) {
+      // 更新 state 使下一次渲染能够显示降级后的 UI
+      console.log(error,'=====>');
+      return {
+        error,
+        errorInfo: {}
+      };
+    }
+
     
     render() {
       if (this.state.errorInfo) {
-        // Error path
         return (
           <div>
             <h2>Something went wrong.</h2>
@@ -39,7 +37,6 @@ export default class ErrorBoundary extends Component {
           </div>
         );
       }
-      // Normally, just render children
       return this.props.children;
     }
 }

@@ -1,10 +1,15 @@
-import React, { forwardRef } from 'react';
-import ChildComponent from './ChildComponent';
+import React, { Fragment } from 'react';
+import ChildA from './ChildA';
+import ChildB from './ChildB';
+import { NameContext } from '../../context';
 
-const FatherComponent = forwardRef((props, ref) => {
+const FatherComponent = () => {
     return (
-        <ChildComponent ref={ref}/>
+        <Fragment>
+            <ChildA/>
+            <ChildB/>
+        </Fragment>
     );
-})
+}
 
 export default FatherComponent;

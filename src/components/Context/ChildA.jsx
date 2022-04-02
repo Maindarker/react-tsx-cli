@@ -1,15 +1,15 @@
-import React, { useContext, forwardRef } from 'react';
+import React, { useContext, useState } from 'react';
 import { NumContext } from '../../context';
 
-const ChildComponent = forwardRef((props,ref) => {
-    console.log(props,ref)
+const ChildComponent = () => {
     const context = useContext(NumContext);
+    console.log('A')
     return (
-        <div ref={ref}>
-            {context.num}
+        <div>
+            <div>{context.a}</div>
         </div>
     );
-})
+}
 
 // ChildComponent.contextType = NumContext;
 
