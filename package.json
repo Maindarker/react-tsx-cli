@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "dev:build": "NODE_ENV=production webpack --config webpack.dev.js --display-chunks -w",
+    "dev:build": "NODE_ENV=development webpack --config webpack.dev.js --display-chunks -w",
     "dev": "npm-run-all --parallel dev:**"
   },
   "author": "",
@@ -52,6 +52,8 @@
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",
     "react-redux": "^7.2.6",
-    "react-router-dom": "^6.0.2"
+    "react-router-dom": "^5.1.2",
+    "react-window": "^1.8.6",
+    "redux": "^4.1.2"
   }
 }

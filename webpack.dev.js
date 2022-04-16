@@ -76,7 +76,7 @@ const webpackConfig =  {
             // }
         ]
     },
-    mode: 'development', //webpack5里面默认为development,无法通过CLK设置mode
+    mode: 'development', //webpack5里面默认为development,无法通过CLI设置mode
     devtool: 'source-map',
     devServer: {
         port: 5500, // 端口
@@ -94,7 +94,7 @@ const webpackConfig =  {
         new HtmlWebpackPlugin({
             template: 'index.html',
             filename: 'index.html',
-            inject: 'head',
+            inject: 'body',
             title: 'Just a test',
         }),
         new MiniCssExtractPlugin({
@@ -129,6 +129,17 @@ const webpackConfig =  {
             name: 'common'
         },
       },
+      performance: {
+        hints:'warning',
+        //入口起点的最大体积
+        maxEntrypointSize: 50000000,
+        //生成文件的最大体积
+        maxAssetSize: 30000000,
+        //只给出 js 文件的性能提示
+        assetFilter: function(assetFilename) {
+            return assetFilename.endsWith('.js');
+        }
+    }
 }
 
 module.exports = webpackConfig
