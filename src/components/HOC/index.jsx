@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, HashRouter, MemoryRouter } from 'react-router-dom'
 
 const renderQueue = []
 let isFirstrender = true

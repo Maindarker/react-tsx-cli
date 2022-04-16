@@ -13,6 +13,7 @@ import ComA from './components/Redux/ComA';
 import ComB from './components/Redux/ComB';
 import VirtualList from './components/VirtruaList';
 import Hoc from './components/HOC/HocA';
+import RouterL from './components/Router';
 
 import './app.scss';
 
@@ -56,9 +57,10 @@ const App = () =>  {
         {/* <ErrorBoundary>
             <BuggyCounter />
         </ErrorBoundary> */}
-        <ReactRef />
+        {/* <ReactRef /> */}
         {/* <ReactLifeCycle />  */}
         {/* <VirtualList/> */}
+        <RouterL/>
     </div>
 }
 
