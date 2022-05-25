@@ -29,7 +29,7 @@ class ClassRef extends Component {
     render() {
         return (
             <div onClick={this.handleClick} style={{height: '100vh'}}>
-                <MiddleComponent ref1={this.classRef}/>
+                <MiddleComponent ref={this.classRef}/>
                 {/* <div ref={this.classRef}/> */}
             </div>
         );
