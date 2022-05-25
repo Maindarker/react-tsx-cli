@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-class CreatePortal extends Component {
+const containerRef = React.createRef();
+//ReactDOM.createPortal不支持ref操作
+class CreatePortalDialog extends Component {
+    handleClick = () => {
+        // ReactDOM.unmountComponentAtNode(this.ref);
+    }
     render() {
-        this.el = document.querySelector('#app');
         return ReactDOM.createPortal(
-            this.props.children,
-            this.el
+            <div className="mask" onClick={this.handleClick} ref={containerRef}>
+                {this.props.children}
+            </div>,
+            document.body
         )
     }
 }
 
-export default CreatePortal;
+export default CreatePortalDialog;
 
