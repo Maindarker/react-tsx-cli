@@ -1,2 +1,2 @@
 # react-tsx-cli
-Webpack Study
+Self React App
