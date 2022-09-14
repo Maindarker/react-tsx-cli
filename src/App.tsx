@@ -14,6 +14,7 @@ import ComB from './components/Redux/ComB';
 import VirtualList from './components/VirtruaList';
 import Hoc from './components/HOC/HocA';
 import ReactRouter from './components/Router';
+import { Counter } from './components/MyCounter/index';
 
 import './app.scss';
 
@@ -48,6 +49,17 @@ const App = () =>  {
     // );
   console.log(1)
     return <div className="my-app" onClick={() => setNum(number+1)}>
+      <div>
+      <h1>Destiny__ {number}</h1>
+      <Counter
+        onMyChange={(e) => {
+          console.log("App -> e", e.detail.value);
+          setNum(e.detail.value);
+        }}
+        max={10}
+        min={-10}
+      ></Counter>
+    </div>
         {/* <Hoc number={number}/> */}
                 
         {/* <RequestIdleCallback /> */}
@@ -61,11 +73,11 @@ const App = () =>  {
         {/* <ReactLifeCycle />  */}
         {/* <VirtualList/> */}
         {/* <ReactRouter/> */}
-        <CreatePortalDialog
+        {/* <CreatePortalDialog
           onClose
         >
           <div className="dialog-con"></div>
-        </CreatePortalDialog>
+        </CreatePortalDialog> */}
         
     </div>
 }
