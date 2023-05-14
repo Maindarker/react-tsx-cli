@@ -19,7 +19,7 @@ import ReactDOM from 'react-dom';
 
 function CreatePortalDialog({children}) {
     const handleClick = () => {
-        // ReactDOM.unmountComponentAtNode(this.ref);
+        console.log(110);
     }
 
     return ReactDOM.createPortal(
