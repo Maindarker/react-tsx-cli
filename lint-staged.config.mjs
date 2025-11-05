@@ -5,11 +5,18 @@ import { cwd } from 'node:process';
 
 const hasBiome = existsSync(resolve(cwd(), 'biome.json'));
 const hasTurbo = existsSync(resolve(cwd(), 'turbo.json'));
+const bin = (name) => resolve(cwd(), 'node_modules', '.bin', process.platform === 'win32' ? `${name}.cmd` : name);
+const hasESLint = existsSync(bin('eslint'));
+const hasPrettier = existsSync(bin('prettier'));
+const hasStylelint = existsSync(bin('stylelint'));
 
 export default {
   '**/*.{css,scss,less,vue}': [
-    'pnpm -s exec stylelint --fix --cache --cache-location .stylelintcache',
-    'pnpm -s exec prettier --write',
+    // 仅当已安装对应工具时才执行
+    ...(hasStylelint
+      ? ['pnpm -s exec stylelint --fix --cache --cache-location .stylelintcache']
+      : []),
+    ...(hasPrettier ? ['pnpm -s exec prettier --write'] : []),
   ],
   '**/*.{js,jsx,ts,tsx,vue}': (files) => {
     const normalized = files.map((f) => f.replaceAll('\\', '/'));
@@ -27,13 +34,19 @@ export default {
     }
 
     const eslintMaxWarnings = 100;
-    // 再对暂存文件运行 ESLint/Prettier
-    commands.push(
-      `pnpm -s exec eslint --fix --cache --cache-location .eslintcache --max-warnings ${eslintMaxWarnings} ${targets}`,
-      `pnpm -s exec prettier --write ${targets}`,
-    );
+    // 再对暂存文件运行 ESLint/Prettier（存在时）
+    if (hasESLint) {
+      commands.push(
+        `pnpm -s exec eslint --fix --cache --cache-location .eslintcache --max-warnings ${eslintMaxWarnings} ${targets}`,
+      );
+    }
+    if (hasPrettier) {
+      commands.push(`pnpm -s exec prettier --write ${targets}`);
+    }
 
     return commands;
   },
-  '**/*.{json,md,yml,yaml}': ['pnpm -s exec prettier --write'],
+  '**/*.{json,md,yml,yaml}': [
+    ...(hasPrettier ? ['pnpm -s exec prettier --write'] : []),
+  ],
 };

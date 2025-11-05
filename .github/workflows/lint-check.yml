@@ -30,7 +30,7 @@ jobs:
         uses: Maindarker/wk-tools@main
         with:
           script: |
-            pnpm -s exec lint-staged \
+            pnpm dlx lint-staged@latest \
               --config lint-staged.config.mjs \
               --diff ${{ github.event.pull_request.base.sha }} \
               --diff-filter=ACMRT \
