@@ -7,10 +7,6 @@ const hasBiome = existsSync(resolve(cwd(), 'biome.json'));
 const hasTurbo = existsSync(resolve(cwd(), 'turbo.json'));
 
 export default {
-  '**/*.{css,scss,less,vue}': [
-    'pnpm -s exec stylelint --fix --cache --cache-location .stylelintcache',
-    'pnpm -s exec prettier --write',
-  ],
   '**/*.{js,jsx,ts,tsx,vue}': (files) => {
     const normalized = files.map((f) => f.replaceAll('\\', '/'));
     const targets = normalized.join(' ');
@@ -18,12 +14,12 @@ export default {
     const commands = [];
 
     if (hasTurbo) {
-      commands.push(`pnpm -s exec turbo run typecheck`);
+      commands.push("pnpm -s exec turbo run typecheck");
     }
-
+console.log(hasBiome, '====')
     // 存在 biome.json 时，先用 Biome 修复问题
     if (hasBiome) {
-      commands.push(`pnpm -s exec biome lint --fix`);
+      commands.push("pnpm -s exec biome lint --fix");
       return commands;
     }
 
@@ -35,6 +31,5 @@ export default {
     );
 
     return commands;
-  },
-  '**/*.{json,md,yml,yaml}': ['pnpm -s exec prettier --write'],
+  }
 };
