@@ -1,0 +1,29 @@
+name: run-script
+description: Run arbitrary script passed from workflow inputs
+branding:
+  icon: terminal
+  color: gray-dark
+inputs:
+  script:
+    description: The script/command to execute (supports multiline)
+    required: true
+  shell:
+    description: Shell to use (e.g. bash, sh, pwsh)
+    required: false
+    default: bash
+  working-directory:
+    description: Directory to run the script in
+    required: false
+    default: .
+  continue-on-error:
+    description: Whether to continue on error
+    required: false
+    default: 'false'
+runs:
+  using: composite
+  steps:
+    - name: Run user script
+      shell: ${{ inputs.shell }}
+      working-directory: ${{ inputs["working-directory"] }}
+      continue-on-error: ${{ inputs["continue-on-error"] == 'true' }}
+      run: ${{ inputs.script }}
