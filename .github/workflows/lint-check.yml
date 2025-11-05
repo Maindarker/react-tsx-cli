@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
       - name: Lint changed files (PR)
-        uses: Maindarker/wk-tools/abc.yml@main
+        uses: Maindarker/wk-tools/actions/lint-check@main
         with:
           script: |
             pnpm -s exec lint-staged \
@@ -37,6 +37,3 @@ jobs:
               --diff ${{ github.event.pull_request.base.sha }} \
               --diff-filter=ACMRT \
               --allow-empty
-          shell: bash
-          working-directory: .
-          continue-on-error: "false"
