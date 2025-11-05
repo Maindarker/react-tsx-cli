@@ -2,7 +2,7 @@ name: lint-check
 
 on:
   pull_request:
-    branches: [main, test, test-**]
+    branches: [master, test, test-**]
     types: [opened, reopened, synchronize]
 
 jobs:
