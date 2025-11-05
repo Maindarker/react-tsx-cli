@@ -24,6 +24,6 @@ runs:
   steps:
     - name: Run user script
       shell: ${{ inputs.shell }}
-      working-directory: ${{ inputs["working-directory"] }}
-      continue-on-error: ${{ inputs["continue-on-error"] == 'true' }}
+      working-directory: ${{ inputs.working-directory }}
+      continue-on-error: ${{ inputs.continue-on-error == 'true' }}
       run: ${{ inputs.script }}
