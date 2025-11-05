@@ -1,0 +1,32 @@
+name: lint-check
+
+on:
+  pull_request:
+    branches: [main, test, test-**]
+    types: [opened, reopened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: lint-check-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lint changed files (PR)
+        uses: Maindarker/wk-tools@main
+        with:
+          script: |
+            pnpm -s exec lint-staged \
+              --config lint-staged.config.mjs \
+              --diff ${{ github.event.pull_request.base.sha }} \
+              --diff-filter=ACMRT \
+              --allow-empty
+          shell: bash
+          working-directory: .
+          continue-on-error: "false"
