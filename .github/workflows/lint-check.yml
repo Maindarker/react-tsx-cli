@@ -32,8 +32,4 @@ jobs:
         uses: Maindarker/wk-tools/actions/lint-check@main
         with:
           script: |
-            pnpm -s exec lint-staged \
-              --config lint-staged.config.mjs \
-              --diff ${{ github.event.pull_request.base.sha }} \
-              --diff-filter=ACMRT \
-              --allow-empty
+            pnpm -s run lint:changed -- --diff ${{ github.event.pull_request.base.sha }}
