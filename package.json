@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint:changed": "pnpm -s exec lint-staged --config lint-staged.config.mjs --diff-filter=ACMRT --allow-empty",
+    "lint:changed": "pnpm -s exec lint-staged --config lint-staged.config.mjs --diff $DIFF_BASE --diff-filter=ACMRT --allow-empty",
     "lint:staged": "pnpm lint-staged --config lint-staged.config.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config webpack.dev.js",

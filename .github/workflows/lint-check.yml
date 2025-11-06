@@ -30,6 +30,8 @@ jobs:
         run: pnpm install --no-frozen-lockfile
       - name: Lint changed files (PR)
         uses: Maindarker/wk-tools/actions/lint-check@main
+        env:
+          DIFF_BASE: ${{ github.event.pull_request.base.sha }}
         with:
           script: |
-            pnpm -s run lint:changed -- --diff ${{ github.event.pull_request.base.sha }}
+            pnpm -s run lint:changed
