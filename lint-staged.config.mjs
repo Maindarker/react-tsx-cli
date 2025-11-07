@@ -16,7 +16,7 @@ export default {
     if (hasTurbo) {
       commands.push("pnpm -s exec turbo run typecheck");
     }
-console.log(hasBiome, '====')
+
     // 存在 biome.json 时，先用 Biome 修复问题
     if (hasBiome) {
       commands.push("pnpm -s exec biome lint --fix");
