@@ -34,4 +34,4 @@ jobs:
           DIFF_BASE: ${{ github.event.pull_request.base.sha }}
         with:
           script: |
-            pnpm -s run lint:changed
+            pnpm -s run lint:changed -- --diff ${{ github.event.pull_request.base.sha }}

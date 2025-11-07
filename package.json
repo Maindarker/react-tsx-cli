@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint:changed": "pnpm lint-staged --config lint-staged.config.mjs --diff $DIFF_BASE --diff-filter=ACMRT --allow-empty",
+    "lint:changed": "pnpm lint-staged --config lint-staged.config.mjs --diff $DIFF_BASE --allow-empty",
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "dev:build": "NODE_ENV=development webpack --config webpack.dev.js --display-chunks -w",
